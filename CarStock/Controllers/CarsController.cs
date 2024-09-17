@@ -18,7 +18,10 @@ namespace CarStock.Controllers
         public ActionResult<List<Car>> GetCars(int dealerId)
         {
             var cars = _dealerRepository.GetCarsByDealer(dealerId);
-            if (cars == null) return NotFound("Dealer not found");
+            if (cars == null)
+            {
+                return NotFound("Dealer not found");
+            }                
             return Ok(cars);
         }
 
@@ -51,7 +54,10 @@ namespace CarStock.Controllers
         public ActionResult<Car> SearchCar(int dealerId, [FromQuery] string make, [FromQuery] string model)
         {
             var car = _dealerRepository.SearchCar(dealerId, make, model);
-            if (car == null) return NotFound("Car not found");
+            if (car == null)
+            {
+                return NotFound("Car not found");
+            }
             return Ok(car);
         }
     }
